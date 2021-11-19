@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Technical</title>
+</head>
+
+<body>
+
+    <div id="main">
+        <nav id="navbar">
+            <header>
+                <h1>CSS Grid</h1>
+            </header>
+            <ul>
+                <li><a href="#Introduction" class="nav-link">Introduction</a></li>
+                <li><a href="#Basics_and_Browser_Support" class="nav-link">Basics and Browser Support</a></li>
+                <li><a href="#Important_Terminology" class="nav-link">Important Terminology</a></li>
+                <li><a href="#Grid_Properties" class="nav-link">Grid Properties</a></li>
+                <li><a href="#Fluid_Columns_Snippet" class="nav-link">Fluid Columns Snippet</a></li>
+                <li><a href="#Animation" class="nav-link">Animation</a></li>
+            </ul>
+        </nav>
+
+        <main id="main-doc">
+            <section id="Introduction" class="main-section">
+                <header>Introduction</header>
+
+                <p>CSS Grid Layout (aka “Grid” or “CSS Grid”), is a two-dimensional grid-based</p>
+                <p>layout system that, compared to any web layout system of the past, completely</p>
+                <p>changes the way we design user interfaces. CSS has always been used to layout</p>
+                <p>our web pages, but it’s never done a very good job of it. First, we used tables,</p>
+                <p>then floats, positioning and inline-block, but all of these methods were</p>
+                <p>essentially hacks and left out a lot of important functionality (vertical</p>
+                <p>centering, for instance). Flexbox is also a very great layout tool, but its one-</p>
+                <p>directional flow has different use cases — and they actually work together</p>
+                <p>quite well! Grid is the very first CSS module created specifically to solve the</p>
+                <p>layout problems we’ve all been hacking our way around for as long as we’ve</p>
+                <p>been making websites.</p>
+            </section>
+
+            <section id="Basics_and_Browser_Support" class="main-section">
+                <header>Basics and Browser Support</header>
+
+                <p>As of March 2017, most browsers shipped native, unprefixed support for CSS</p>
+                <p>Grid: Chrome (including on Android), Firefox, Safari (including on iOS), and</p>
+                <p>Opera. Internet Explorer 10 and 11 on the other hand support it, but it’s an old</p>
+                <p>implementation with an outdated syntax. The time to build with grid is now!</p>
+                <p>To get started you have to define a container element as a grid with display:</p>
+                <p>grid, set the column and row sizes with grid-template-columns and grid-</p>
+                <p>template-rows, and then place its child elements into the grid with grid-</p>
+                <p>column and grid-row. Similarly to flexbox, the source order of the grid items</p>
+                <p>doesn’t matter. Your CSS can place them in any order, which makes it super</p>
+                <p>easy to rearrange your grid with media queries. Imagine defining the layout of</p>
+                <p>your entire page, and then completely rearranging it to accommodate a</p>
+                <p>different screen width all with only a couple lines of CSS. Grid is one of the</p>
+                <p>most powerful CSS modules ever introduced.</p>
+            </section>
+
+            <section id="Important_Terminology" class="main-section">
+                <header>Important Terminology</header>
+
+                <p>Before diving into the concepts of Grid it’s important to understand the</p>
+                <p>terminology. Since the terms involved here are all kinda conceptually similar,</p>
+                <p>it’s easy to confuse them with one another if you don’t first memorize their</p>
+                <p>meanings defined by the Grid specification. But don’t worry, there aren’t many</p>
+                <p>of them.</p>
+
+                <h3>Grid Container</h3>
+                <p>The element on which display: grid is applied. It’s the direct parent of</p>
+                <p>all the grid items. In this example container is the grid container.</p>
+
+                <code id="container1">
+                    <span class="blue">&ltdiv <span class="green">class</span>="<span class="yellow">container</span>"/&gt </span> <br>
+                    <span class="blue"><span class="space"></span>&ltdiv <span class="green">class</span>="<span class="yellow">item item-1</span>"&gt &lt/div&gt</span> <br>
+                    <span class="blue"><span class="space"></span>&ltdiv <span class="green">class</span>="<span class="yellow">item item-2</span>"&gt &lt/div&gt</span> <br>
+                    <span class="blue"><span class="space"></span>&ltdiv <span class="green">class</span>="<span class="yellow">item item-3</span>"&gt &lt/div&gt</span> <br>
+                    <span class="blue">&lt/div&gt</span>
+                </code>
+
+                <h3>Grid Item</h3>
+                <p>The children (i.e. direct descendants) of the grid container. Here</p>
+                <p>the item elements are grid items, but sub-item isn’t.</p>
+
+                <code id="container2">
+                    <span class="blue">&ltdiv <span class="green">class</span>="<span class="yellow">container</span>="&gt</span> <br>
+                    <span class="blue"><span class="space"></span>&ltdiv <span class="green">class</span>="<span class="yellow">item</span>"&gt &lt/div&gt</span> <br>
+                    <span class="blue"><span class="space"></span>&ltdiv <span class="green">class</span>="<span class="yellow">item</span>"&gt</span> <br>
+                    <span class="blue"><span class="space"></span>&ltp <span class="green">class</span>="<span class="yellow">sub-item</span>"&gt &lt/p&gt</span> <br>
+                    <span class="blue"><span class="space"></span>&lt/div&gt</span> <br>
+                    <span class="blue"><span class="space"></span>&ltdiv <span class="green">class</span>="<span class="yellow">item</span>"&gt &lt/div&gt</span> <br>
+                    <span class="blue">&lt/div&gt</span>
+                </code>
+
+                <h3>Grid line</h3>
+                <p>The dividing lines that make up the structure of the grid. They can be</p>
+                <p>either vertical (“column grid lines”) or horizontal (“row grid lines”) and</p>
+                <p>reside on either side of a row or column. Here the yellow line is an</p>
+                <p>example of a column grid line.</p>
+                <img src="img/Grid-line.svg" alt="">
+
+                <h3>Grid Cell</h3>
+                <p>The space between two adjacent row and two adjacent column grid</p>
+                <p>lines. It’s a single “unit” of the grid. Here’s the grid cell between row grid</p>
+                <p>lines 1 and 2, and column grid lines 2 and 3.</p>
+                <img src="img/Grid-cell.svg" alt="">
+
+                <h3>Grid Track</h3>
+                <p>The space between two adjacent grid lines. You can think of them as the</p>
+                <p>columns or rows of the grid. Here’s the grid track between the second</p>
+                <p>and third-row grid lines.</p>
+                <img src="img/Grid-track.svg" alt="">
+
+                <h3>Grid Area</h3>
+                <p>The total space surrounded by four grid lines. A grid area may be</p>
+                <p>composed of any number of grid cells. Here’s the grid area between row</p>
+                <p>grid lines 1 and 3, and column grid lines 1 and 3.</p>
+                <img src="img/Grid-area.svg" alt="">
+
+            </section>
+
+            <section id="Grid_Properties" class="main-section">
+                <header>Grid Properties</header>
+
+                <h4>grid-column-start</h4>
+                <h4>grid-column-end</h4>
+                <h4>grid-row-start</h4>
+                <h4 id="space-h4">grid-row-end</h4>
+
+                <p>Determines a grid item’s location within the grid by referring to</p>
+                <p>specific grid lines. grid-column-start/grid-row-start is the</p>
+                <p>line where the item begins, and grid-column-end/grid-row-</p>
+                <p>end is the line where the item ends.</p>
+
+                <p>Values:</p>
+                <ul>
+                    <li class="values">
+                        <p>&ltline&gt – can be a number to refer to a numbered grid line, or a name to refer
+                            to a named grid line</p>
+                    </li>
+                    <li class="values">
+                        <p>span &ltnumber&gt – the item will span across the provided number of grid tracks</p>
+                    </li>
+                    <li class="values">
+                        <p>span &ltname&gt – the item will span across until it hits the next line with the
+                            provided name</p>
+                    </li>
+                    <li class="values">
+                        <p>auto – indicates auto-placement, an automatic span, or a default span of one</p>
+                    </li>
+                    <li class="values"></li>
+                </ul>
+
+                <code id="container3">
+                    <span class="yellow">.item <span class="blue">{</span></span> <br>
+                    <span class="blue"><span class="space"></span>grid-column-start: <span class="yellow">&ltnumber&gt | &ltname&gt | span &ltnumber&gt | span &ltname&gt | auto</span>;</span> <br>
+                    <span class="blue"><span class="space"></span>grid-column-end: <span class="yellow">&ltnumber&gt | &ltname&gt | span &ltnumber&gt | span &ltname&gt | auto</span>;</span> <br>
+                    <span class="blue"><span class="space"></span>grid-row-start: <span class="yellow">&ltnumber&gt | &ltname&gt | span &ltnumber&gt | span &ltname&gt | auto</span>;</span> <br>
+                    <span class="blue"><span class="space"></span>grid-row-end: <span class="yellow">&ltnumber&gt | &ltname&gt | span &ltnumber&gt | span &ltname&gt | auto</span>;</span> <br>
+                    <span class="blue">}</span>        
+                </code>
+                <p id="exaple-p">Example:</p>
+                <code id="container4">
+                    <span class="yellow">.item-a <span class="blue">{</span></span> <br>
+                    <span class="blue"><span class="space">grid-column-start:</span><span class="orange">2</span>;</span> <br>
+                    <span class="blue"><span class="space">grid-column-end:</span><span class="yellow">five</span>;</span> <br>
+                    <span class="blue"><span class="space">grid-row-start:</span><span class="yellow">row<span class="orange">1</span>-start</span>;</span> <br>
+                    <span class="blue"><span class="space">grid-row-end:</span><span class="orange">3</span>;</span> <br>
+                    <span class="blue">}</span>
+                </code>
+
+            </section>
+
+            <section id="Fluid_Columns_Snippet" class="main-section">
+                <header>Fluid Columns Snippet</header>
+                <p>Fluid width columns that break into more or less columns as space is available,</p>
+                <p>with no media queries!</p>
+
+                <code id="container5">
+                    <span class="yellow">.grid <span class="blue">{</span></span> <br>
+                    <span class="blue"><span class="space"></span>display: <span class="yellow">grid</span> ;</span> <br>
+                    <span class="blue"><span class="space"></span>grid-template-columns: <span class="yellow">repeat</span>(<span class="yellow">autofill</span>,<span class="yellow">minmax</span>(<span class="orange">200</span><span class="yellow">px</span>, <span class="orange">1</span><span class="yellow">fr</span>));</span> <br>
+                    <span class="comment"><span class="space"></span>/* This is better for small screens, once min() is better supported */</span> <br>
+                    <span class="comment"><span class="space"></span>/* grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); */</span> <br>
+                    <span class="blue"><span class="space"></span>gap: <span class="orange">1</span><span class="yellow">rem</span>;</span> <br>
+                    <span class="blue">}</span>
+                </code>
+
+            </section>
+
+            <section id="Animation" class="main-section">
+                <header>Animation</header>
+
+                <p>According to the CSS Grid Layout Module Level 1 specification, there are 5</p>
+                <p>animatable grid properties:</p>
+                <br>
+                <p>grid-gap, grid-row-gap, grid-column-gap as length, percentage, or calc.</p>
+                <p>grid-template-columns, grid-template-rows as a simple list of length,</p>
+                <p>percentage, or calc, provided the only differences are the values of the length,</p>
+                <p>percentage, or calc components in the list.</p>
+                <br>
+                <p>As of this writing, only the animation of (grid-)gap, (grid-)row-</p>
+                <p id="last">gap, (grid-)column-gap is implemented in any of the tested browsers.</p>
+
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+
+</html>
